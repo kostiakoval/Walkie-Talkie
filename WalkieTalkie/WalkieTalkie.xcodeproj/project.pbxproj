@@ -77,9 +77,7 @@
 		B5229C371A73D7FA004C9781 /* WalkieTalkie */ = {
 			isa = PBXGroup;
 			children = (
-				B5229C511A73D85A004C9781 /* DarwinNotifications.h */,
-				B5229C521A73D85A004C9781 /* DarwinNotifications.m */,
-				B5229C531A73D85A004C9781 /* Notifyier.swift */,
+				B593DE801A73F1EC00B92C43 /* Code */,
 				B5229C3A1A73D7FA004C9781 /* WalkieTalkie.h */,
 				B5229C381A73D7FA004C9781 /* Supporting Files */,
 			);
@@ -109,6 +107,16 @@
 				B5229C461A73D7FA004C9781 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B593DE801A73F1EC00B92C43 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				B5229C511A73D85A004C9781 /* DarwinNotifications.h */,
+				B5229C521A73D85A004C9781 /* DarwinNotifications.m */,
+				B5229C531A73D85A004C9781 /* Notifyier.swift */,
+			);
+			name = Code;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +345,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WalkieTalkie/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -355,6 +364,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WalkieTalkie/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -412,6 +422,7 @@
 				B5229C4D1A73D7FA004C9781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5229C4E1A73D7FA004C9781 /* Build configuration list for PBXNativeTarget "WalkieTalkieTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +431,7 @@
 				B5229C501A73D7FA004C9781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

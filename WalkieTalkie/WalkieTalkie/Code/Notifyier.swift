@@ -9,6 +9,7 @@
 import Foundation
 
 let WalkieTalkieNotification = "WalkieTakieDarwinNotification"
+let Chanel = "chanel"
 
 protocol TargetAction {
   func performAction()
@@ -25,9 +26,10 @@ struct TargetActionWrapper<T: AnyObject> : TargetAction {
   }
 }
 
+typealias Listener = () -> Void
 @objc public class Notifier {
-  
-  var listeners: [String: String] = [:]
+
+  var listeners: [String: [Listener]] = [:]
   
   public init() {
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"walkieTalkieMessage:" , name: WalkieTalkieNotification, object: nil)
@@ -35,11 +37,6 @@ struct TargetActionWrapper<T: AnyObject> : TargetAction {
   
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
-  
-  
-  func addObserver<T: AnyObject>(target: AnyObject, action: (T)->()->(), name: String) {
-    
   }
   
   public func sendMessage<T>(chanel: String, object: T) {
@@ -50,6 +47,7 @@ struct TargetActionWrapper<T: AnyObject> : TargetAction {
   public func registerListener(chanel: String, callback:() -> Void) {
     let center = CFNotificationCenterGetDarwinNotifyCenter()
     DarwinNotifications.addObserver(center, name: chanel)
+    listeners[chanel] = addListener(callback, toChanel: chanel)
   }
   
   public func unregisterListener(chanel: String) {
@@ -59,20 +57,20 @@ struct TargetActionWrapper<T: AnyObject> : TargetAction {
   }
   
   func walkieTalkieMessage(message: NSNotification) {
-    print("Recived Message: \(message.userInfo)")
+    let chanel = message.userInfo![Chanel] as String
+    println("WalkieTalkie Recived Message: \(message.userInfo)")
+
+    let activeListeners = listeners[chanel] ?? []
+    for listener in activeListeners {
+      listener()
+    }
   }
 }
 
-/*
-let notificationCenter = CFNotificationCenterGetDarwinNotifyCenter()
-
-var mSelf = self
-var p = UnsafeMutablePointer<(CFNotificationCenter!, UnsafeMutablePointer<Void>, CFString!, UnsafePointer<Void>, CFDictionary!) -> Void>.alloc(1)
-p.initialize(wormholeNotificationCallback)
-var ff = COpaquePointer(p)
-var f = CFunctionPointer<((CFNotificationCenter!, UnsafeMutablePointer<Void>, CFString!, UnsafePointer<Void>, CFDictionary!) -> Void)>(ff)
-
-//Notifications
-
-//CFNotificationCenterAddObserver(notificationCenter, &mSelf, f, "test", nil, .DeliverImmediately)
-}*/
+extension Notifier {
+  func addListener(listener:() -> Void, toChanel chanel: String) -> [Listener] {
+    var chanelListeners = listeners[chanel] ?? []
+    chanelListeners.append(listener)
+    return chanelListeners
+  }
+}

@@ -7,23 +7,21 @@
 //
 
 #import "DarwinNotifications.h"
+
 NSString * const WalkieTalkieNotification = @"WalkieTakieDarwinNotification";
-
+NSString * const Chanel = @"chanel";
 @implementation DarwinNotifications
-
 
 + (void)addObserver:(CFNotificationCenterRef)center name:(CFStringRef)name {
   CFNotificationCenterAddObserver(center, (__bridge const void *)(self), darwinNotificationCallback,
-                                  name, NULL,CFNotificationSuspensionBehaviorDeliverImmediately);
+                                  name, NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
 }
-
 
 void darwinNotificationCallback(CFNotificationCenterRef center, void * observer, CFStringRef name,
                                 void const * object, CFDictionaryRef userInfo) {
-  NSLog(@"Recived");
-  
-  NSString *identifier = (__bridge NSString *)name;
-  [[NSNotificationCenter defaultCenter] postNotificationName:WalkieTalkieNotification object:nil userInfo:@{@"identifier" : identifier}];
+  NSLog(@"Darwin Recived");
+  NSString *chanel = (__bridge NSString *)name;
+  [[NSNotificationCenter defaultCenter] postNotificationName:WalkieTalkieNotification object:nil userInfo:@{Chanel : chanel}];
 }
 
 
