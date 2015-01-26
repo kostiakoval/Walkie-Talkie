@@ -12,7 +12,7 @@
 		B5229C481A73D7FA004C9781 /* WalkieTalkieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5229C471A73D7FA004C9781 /* WalkieTalkieTests.swift */; };
 		B5229C541A73D85A004C9781 /* DarwinNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = B5229C511A73D85A004C9781 /* DarwinNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5229C551A73D85A004C9781 /* DarwinNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = B5229C521A73D85A004C9781 /* DarwinNotifications.m */; };
-		B5229C561A73D85A004C9781 /* Notifyier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5229C531A73D85A004C9781 /* Notifyier.swift */; };
+		B5229C561A73D85A004C9781 /* WalkieTalkie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5229C531A73D85A004C9781 /* WalkieTalkie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +34,7 @@
 		B5229C471A73D7FA004C9781 /* WalkieTalkieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkieTalkieTests.swift; sourceTree = "<group>"; };
 		B5229C511A73D85A004C9781 /* DarwinNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarwinNotifications.h; path = Code/DarwinNotifications.h; sourceTree = "<group>"; };
 		B5229C521A73D85A004C9781 /* DarwinNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarwinNotifications.m; path = Code/DarwinNotifications.m; sourceTree = "<group>"; };
-		B5229C531A73D85A004C9781 /* Notifyier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifyier.swift; path = Code/Notifyier.swift; sourceTree = "<group>"; };
+		B5229C531A73D85A004C9781 /* WalkieTalkie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkieTalkie.swift; path = Code/WalkieTalkie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 			children = (
 				B5229C511A73D85A004C9781 /* DarwinNotifications.h */,
 				B5229C521A73D85A004C9781 /* DarwinNotifications.m */,
-				B5229C531A73D85A004C9781 /* Notifyier.swift */,
+				B5229C531A73D85A004C9781 /* WalkieTalkie.swift */,
 			);
 			name = Code;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5229C551A73D85A004C9781 /* DarwinNotifications.m in Sources */,
-				B5229C561A73D85A004C9781 /* Notifyier.swift in Sources */,
+				B5229C561A73D85A004C9781 /* WalkieTalkie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
