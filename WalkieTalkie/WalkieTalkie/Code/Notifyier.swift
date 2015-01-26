@@ -11,27 +11,21 @@ import Foundation
 let WalkieTalkieNotification = "WalkieTakieDarwinNotification"
 let Chanel = "chanel"
 
-protocol TargetAction {
-  func performAction()
-}
-
-struct TargetActionWrapper<T: AnyObject> : TargetAction {
-  weak var target: T?
-  let action: (T) -> ()->()
-  
-  func performAction() -> () {
-    if let t = target {
-      action(t)()
-    }
-  }
-}
-
 typealias Listener = () -> Void
-@objc public class Notifier {
+
+@objc public class WalkieTalkie {
+  
+  public class var sharedInstance : WalkieTalkie {
+    struct Static {
+      static let instance = WalkieTalkie()
+    }
+    return Static.instance
+  }
+
 
   var listeners: [String: [Listener]] = [:]
   
-  public init() {
+  private init() {
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"walkieTalkieMessage:" , name: WalkieTalkieNotification, object: nil)
   }
   
@@ -45,15 +39,17 @@ typealias Listener = () -> Void
   }
   
   public func registerListener(chanel: String, callback:() -> Void) {
-    let center = CFNotificationCenterGetDarwinNotifyCenter()
-    DarwinNotifications.addObserver(center, name: chanel)
+    if !chanelExist(chanel, chanels: listeners.keys.array) {
+      let center = CFNotificationCenterGetDarwinNotifyCenter()
+      DarwinNotifications.addObserver(center, observer:self, name: chanel)
+    }
     listeners[chanel] = addListener(callback, toChanel: chanel)
   }
   
   public func unregisterListener(chanel: String) {
     let center = CFNotificationCenterGetDarwinNotifyCenter()
     var mSelf = self
-    CFNotificationCenterRemoveObserver(center, &mSelf, chanel, nil)
+    DarwinNotifications.removeObserver(center, observer: self, name: chanel)
   }
   
   func walkieTalkieMessage(message: NSNotification) {
@@ -67,7 +63,12 @@ typealias Listener = () -> Void
   }
 }
 
-extension Notifier {
+extension WalkieTalkie {
+  
+  func chanelExist(chanel: String, chanels: [String]) -> Bool {
+    return chanels.filter { $0 == chanel }.count != 0
+  }
+  
   func addListener(listener:() -> Void, toChanel chanel: String) -> [Listener] {
     var chanelListeners = listeners[chanel] ?? []
     chanelListeners.append(listener)
