@@ -10,6 +10,7 @@
 
 @interface DarwinNotifications : NSObject
 
-+ (void)addObserver:(CFNotificationCenterRef)center name:(CFStringRef)name;
++ (void)addObserver:(CFNotificationCenterRef)center observer:(id)observer name:(CFStringRef)name;
++ (void)removeObserver:(CFNotificationCenterRef)center observer:(id)observer name:(CFStringRef)name;
 
 @end
