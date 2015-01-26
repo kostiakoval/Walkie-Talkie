@@ -26,7 +26,7 @@ void darwinNotificationCallback(CFNotificationCenterRef center, void * observer,
                                 void const * object, CFDictionaryRef userInfo) {
   NSLog(@"Darwin Recived");
   NSString *chanel = (__bridge NSString *)name;
-  [[NSNotificationCenter defaultCenter] postNotificationName:WalkieTalkieNotification object:nil userInfo:@{Chanel : chanel}];
+  [[NSNotificationCenter defaultCenter] postNotificationName:WalkieTalkieNotification object:(__bridge id)(observer) userInfo:@{Chanel : chanel}];
 }
 
 

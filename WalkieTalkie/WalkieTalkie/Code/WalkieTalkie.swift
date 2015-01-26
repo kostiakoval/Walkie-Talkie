@@ -22,11 +22,10 @@ typealias Listener = () -> Void
     return Static.instance
   }
 
-
   var listeners: [String: [Listener]] = [:]
   
-  private init() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector:"walkieTalkieMessage:" , name: WalkieTalkieNotification, object: nil)
+  public init() {
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"walkieTalkieMessage:" , name: WalkieTalkieNotification, object: self)
   }
   
   deinit {
@@ -47,6 +46,7 @@ typealias Listener = () -> Void
   }
   
   public func unregisterListener(chanel: String) {
+    
     let center = CFNotificationCenterGetDarwinNotifyCenter()
     var mSelf = self
     DarwinNotifications.removeObserver(center, observer: self, name: chanel)
@@ -74,4 +74,11 @@ extension WalkieTalkie {
     chanelListeners.append(listener)
     return chanelListeners
   }
+  
+  func removeListener(listener:() -> Void, toChanel chanel: String) -> [Listener] {
+    var chanelListeners = listeners[chanel] ?? []
+    //TODO remove listener
+    return chanelListeners
+  }
+
 }
